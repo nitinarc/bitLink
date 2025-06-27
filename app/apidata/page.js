@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import '@/app/apidata/style.css'
 
+
 function page() {
 
 

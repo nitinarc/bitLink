@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -9,15 +11,15 @@ export default function page() {
     const [shorturl, setshorturl] = useState("")
     const [users, setUsers] = useState([]);
 
-   
+
     function generate() {
         if (url && shorturl) {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-
             const raw = JSON.stringify({
                 "url": url,
-                "shorturl": shorturl
+                "shorturl": shorturl,
+                "id": uuidv4()
             });
 
             const requestOptions = {
@@ -40,7 +42,7 @@ export default function page() {
         else {
             alert('Please Enter URL')
         }
-        
+
         fetch('/api/generate')
             .then(res => res.json())
             .then(data => setUsers(data));
@@ -64,6 +66,9 @@ export default function page() {
                         onChange={(e) => { setshorturl(e.target.value) }}
                     />
                     <button style={{ cursor: 'pointer' }} onClick={generate} className='bg-purple-500 rounded-lg shadow-lg p-3 py-1 my-3 font-bold text-white'>Generate</button>
+                </div>
+                <div>
+                    h
                 </div>
             </div>
         </>
